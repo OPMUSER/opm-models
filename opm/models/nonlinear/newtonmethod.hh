@@ -121,8 +121,8 @@ template<class TypeTag, class MyTypeTag>
 struct NewtonTargetIterations { using type = UndefinedProperty; };
 
 //! Number of maximum iterations for the Newton method.
-template<class TypeTag, class MyTypeTag>
-struct NewtonMaxIterations { using type = UndefinedProperty; };
+// template<class TypeTag, class MyTypeTag>
+// struct NewtonMaxIterations { using type = UndefinedProperty; };
 
 // set default values for the properties
 template<class TypeTag>
@@ -147,10 +147,10 @@ struct NewtonMaxError<TypeTag, TTag::NewtonMethod>
     using type = GetPropType<TypeTag, Scalar>;
     static constexpr type value = 1e100;
 };
-template<class TypeTag>
-struct NewtonTargetIterations<TypeTag, TTag::NewtonMethod> { static constexpr int value = 10; };
-template<class TypeTag>
-struct NewtonMaxIterations<TypeTag, TTag::NewtonMethod> { static constexpr int value = 18; };
+// template<class TypeTag>
+// struct NewtonTargetIterations<TypeTag, TTag::NewtonMethod> { static constexpr int value = 10; };
+// template<class TypeTag>
+// struct NewtonMaxIterations<TypeTag, TTag::NewtonMethod> { static constexpr int value = 18; };
 
 } // namespace Opm::Properties
 
@@ -214,9 +214,9 @@ public:
         EWOMS_REGISTER_PARAM(TypeTag, int, NewtonTargetIterations,
                              "The 'optimum' number of Newton iterations per "
                              "time step");
-        EWOMS_REGISTER_PARAM(TypeTag, int, NewtonMaxIterations,
-                             "The maximum number of Newton iterations per time "
-                             "step");
+//        EWOMS_REGISTER_PARAM(TypeTag, int, NewtonMaxIterations,
+//                             "The maximum number of Newton iterations per time "
+//                             "step");
         EWOMS_REGISTER_PARAM(TypeTag, Scalar, NewtonTolerance,
                              "The maximum raw error tolerated by the Newton"
                              "method for considering a solution to be "
@@ -898,12 +898,12 @@ protected:
      * This method is called _after_ end_()
      */
     void failed_()
-    { numIterations_ = targetIterations_() * 2; }
+    { numIterations_ = targetIterations_() * 2; }                                                                                                                        
 
     /*!
      * \brief Called if the Newton method was successful.
      *
-     * This method is called _after_ end_()
+     * This method is called _after_ end_()                 
      */
     void succeeded_()
     {}
